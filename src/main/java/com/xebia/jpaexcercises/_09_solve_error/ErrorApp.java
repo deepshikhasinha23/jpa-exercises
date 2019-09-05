@@ -17,6 +17,8 @@ public class ErrorApp {
             First first = new First();
             first.setName("Test Employee");
             first.setSalary(100_000);
+            Second second=new Second("Second test");
+            first.setSecond(second);
             entityManager.persist(first);
             entityManager.getTransaction().commit();
 

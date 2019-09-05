@@ -14,6 +14,7 @@ public class Employee {
     private String name;
     private long salary;
     @ManyToMany
+    @JoinTable(name="emp_proj",joinColumns=@JoinColumn(name="emp_id"),inverseJoinColumns = @JoinColumn(name="proj_id"))
     private List<Project> projects;
 
     public Employee() {

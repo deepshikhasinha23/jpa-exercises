@@ -11,7 +11,8 @@ public class Employee {
     private Long id;
     private String name;
     private long salary;
-    @OneToOne
+    @OneToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "plot_id")
     private ParkingSpace parkingSpace;
 
     public Employee() {

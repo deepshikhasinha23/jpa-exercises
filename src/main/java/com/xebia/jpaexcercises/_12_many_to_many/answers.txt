@@ -1,0 +1,43 @@
+1. 5 tables created. 2 mapping tables are created as we not mapped the
+    +--------------------+
+    | Tables_in_jpaex    |
+    +--------------------+
+    | employees          |
+    | employees_projects |
+    | hibernate_sequence |
+    | projects           |
+    | projects_employees |
+    +--------------------+
+2. 4 tables created
+     @ManyToMany((mappedBy = "projects")
+     private List<Employee> employees;
+    +--------------------+
+    | Tables_in_jpaex    |
+    +--------------------+
+    | employees          |
+    | employees_projects |
+    | hibernate_sequence |
+    | projects           |
+    +--------------------+
+3. We have a join table to facilitate many to many mapping i.e. employees_projects. So, ManyToMany mapping does not need to store foreign key.
+4.  @ManyToMany
+     @JoinTable(name="emp_proj",joinColumns=@JoinColumn(name="emp_id"),inverseJoinColumns = @JoinColumn(name="proj_id"))
+     private List<Project> projects;
+5.   entityManagerFactory = Persistence.createEntityManagerFactory("jpa-examples-pu");
+                entityManager = entityManagerFactory.createEntityManager();
+                entityManager.getTransaction().begin();
+
+                Project project=new Project("java");
+                entityManager.persist(project);
+                entityManager.getTransaction().commit();
+                entityManager.close();
+
+                entityManager = entityManagerFactory.createEntityManager();
+                entityManager.getTransaction().begin();
+                Employee employee = new Employee("Test Employee", 1_000_000);
+                employee.addProject(project);
+                Employee employee2 = new Employee("Test Employee 2", 1_5_000);
+                employee2.addProject(project);
+                entityManager.persist(employee);
+                entityManager.persist(employee2);
+                entityManager.getTransaction().commit();

@@ -12,7 +12,7 @@ public class First {
     private String name;
     private long salary;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     private Second second;
 
     public First() {

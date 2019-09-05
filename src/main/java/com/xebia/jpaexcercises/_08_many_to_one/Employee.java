@@ -1,6 +1,7 @@
 package com.xebia.jpaexcercises._08_many_to_one;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "employees")
@@ -12,7 +13,9 @@ public class Employee {
     private String name;
     private long salary;
 
+    @NotNull
     @ManyToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "dept_id")
     private Department department;
 
     public Employee() {
