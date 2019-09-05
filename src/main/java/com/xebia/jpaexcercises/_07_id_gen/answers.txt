@@ -1,0 +1,1 @@
+create database jpaex character set utf8;

@@ -11,7 +11,7 @@ public class Department {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String name;
-    @OneToMany(mappedBy = "department")
+    @OneToMany
     private List<Employee> employees;
 
     public Department() {

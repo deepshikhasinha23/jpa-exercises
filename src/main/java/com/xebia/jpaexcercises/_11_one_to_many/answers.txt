@@ -1,0 +1,15 @@
+1. department was set to employee as the field was marked not optional.
+   employee.setDepartment(department);
+2. One select statement is run to fetch data from the department table and the other to fetch data fro employee table.
+3. 3 tables created- employees,departments,hibernate_sequence.employees table contains the department_id as the foreign key.
+4. Employee is the owning side and department is the inverse side.
+5. Two sql select queries fired to fetch employee data and department data
+6. An extra mapping table is created.
+    +-----------------------+
+    | Tables_in_jpaex       |
+    +-----------------------+
+    | departments           |
+    | departments_employees |
+    | employees             |
+    | hibernate_sequence    |
+    +-----------------------+

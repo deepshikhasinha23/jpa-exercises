@@ -1,0 +1,40 @@
+1. Three tables are created - employees, departments and hibernate_sequence. The hibernate_sequence table contains the next value of the
+sequence to be assigned.
+2. Four columns are created under table employees - id,name,salary,department_id. "Id" is set as the primary key. "department_id" column has an index "MUL" which
+comes from “multiple” because multiple occurences of the same value are allowed.
+3. Two columns are created under table departments - id, name. "Id" is set as the primary key.
+4. First, data will be inserted in department table and then in employees table as department id is needed to create employee table.
+5. No
+6. cascadetype=persist means that if the parent entity is persisted then all its related entity will also be persisted.
+   javax.persistence.RollbackException occurs as the department data is not being saved.
+7.        @NotNull
+          @ManyToOne(cascade = CascadeType.PERSIST)
+          @JoinColumn(name = "dept_id")
+          private Department department;
+
+8.         EntityManagerFactory entityManagerFactory = null;
+           EntityManager entityManager = null;
+           try {
+               entityManagerFactory = Persistence.createEntityManagerFactory("jpa-examples-pu");
+               entityManager = entityManagerFactory.createEntityManager();
+               entityManager.getTransaction().begin();
+
+               Employee employee1 = new Employee();
+               Employee employee2=new Employee();
+               employee1.setName("John");
+               employee2.setName("Tom");
+               employee1.setSalary(100_000);
+               employee2.setSalary(200000);
+
+               Department department = new Department("IT");
+               employee1.setDepartment(department);
+               employee2.setDepartment(department);
+               entityManager.persist(employee1);
+               entityManager.persist(employee2);
+               entityManager.getTransaction().commit();
+9. The owning side of the entity is determined by referencing both entities in the data model and identifying the entity containing the foreign key.
+   Here, Employee is the owning side and Department is the inverse side.
+10. This can be achieved by adding @JoinColumn annotation to department field in Employee class.
+       @ManyToOne(cascade = CascadeType.PERSIST)
+       @JoinColumn(name = "dept_id")
+       private Department department;

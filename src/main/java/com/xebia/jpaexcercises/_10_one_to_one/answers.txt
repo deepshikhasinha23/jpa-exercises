@@ -1,0 +1,13 @@
+1. ParkingSpace was not getting persisted. CascadeType.PERSIST was added.
+    @OneToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "plot_id")
+    private ParkingSpace parkingSpace;
+2. Three tables are created- employees, parking_lot, hibernate_sequence
+    employees table contains the foreign key.
+3.  @OneToOne
+    @JoinColumn(name = "plot_id")
+    private ParkingSpace parkingSpace;
+4.  One to One mapping in parking_lot
+     @OneToOne
+     private Employee employee;
+5.
