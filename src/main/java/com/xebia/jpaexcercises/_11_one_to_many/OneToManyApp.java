@@ -21,6 +21,7 @@ public class OneToManyApp {
             Employee employee = new Employee();
             employee.setName("Test Employee");
             employee.setSalary(100_000);
+            employee.setDepartment(department);
             department.addEmployee(employee);
             entityManager.persist(employee);
             entityManager.getTransaction().commit();
@@ -28,8 +29,10 @@ public class OneToManyApp {
             entityManager.close();
             entityManager = entityManagerFactory.createEntityManager();
             System.out.println("Finding Employee");
-            Employee foundEmployee = entityManager.find(Employee.class, employee.getId());
-            System.out.println(foundEmployee);
+            //Employee foundEmployee = entityManager.find(Employee.class, employee.getId());
+            Department foundDepartment = entityManager.find(Department.class, department.getId());
+            //System.out.println(foundEmployee);
+            System.out.println(foundDepartment);
             System.out.println("Found Employee");
 
 

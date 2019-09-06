@@ -10,7 +10,8 @@ public class ParkingSpace {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private int lotNo;
-
+    @OneToOne
+    private Employee employee;
     public ParkingSpace() {
     }
 
@@ -34,11 +35,20 @@ public class ParkingSpace {
         this.lotNo = lotNo;
     }
 
+    public Employee getEmployee() {
+        return employee;
+    }
+
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
+    }
+
     @Override
     public String toString() {
         return "ParkingSpace{" +
                 "id=" + id +
                 ", lotNo=" + lotNo +
+                ", employee=" + employee +
                 '}';
     }
 }
